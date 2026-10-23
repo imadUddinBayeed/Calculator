@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculator</title>
+</head>
+
+<body class="bg-gray-200 h-screen px-9 py-2 flex justify-center items-center flex-col">
+  <div
+    class="w-[300px] h-[400px] bg-gray-600 px-2 py-2 rounded-md flex justify-center text-center items-center flex-col">
+    <h1 class="text-white font-mono text-xl">Web Calculator</h1>
+    <div
+      class="output px-6 rounded-md text-white  flex items-center bg-gray-700 w-[250px] h-[40px] my-2  overflow-auto">
+    </div>
+    <div class="flex justify-center flex-wrap gap-2">
+      <button class="bg-gray-300 py-3 input text-center font-mono flex justify-center items-center px-6  ">1</button>
+      <button class="bg-gray-300 py-3 input text-center font-mono flex justify-center items-center px-6  ">2</button>
+      <button class="bg-gray-300 py-3 input text-center font-mono flex justify-center items-center px-6  ">3</button>
+      <button class="bg-gray-300 py-3 input text-center font-mono flex justify-center items-center px-6  ">4</button>
+      <button class="bg-gray-300 py-3 input text-center font-mono flex justify-center items-center px-6  ">5</button>
+      <button class="bg-gray-300 py-3 input text-center font-mono flex justify-center items-center px-6  ">6</button>
+      <button class="bg-gray-300 py-3 input text-center font-mono flex justify-center items-center px-6  ">7</button>
+      <button class="bg-gray-300 py-3 input text-center font-mono flex justify-center items-center px-6  ">8</button>
+      <button class="bg-gray-300 py-3 input text-center font-mono flex justify-center items-center px-6  ">9</button>
+      <button class="bg-gray-300 py-3 input text-center font-mono flex justify-center items-center px-6  ">0</button>
+      <button class="bg-gray-300 py-3 cut text-center font-mono flex justify-center items-center px-6  ">C</button>
+      <button class="bg-gray-300 py-3 input text-center font-mono flex justify-center items-center px-6  ">+</button>
+      <button class="bg-gray-300 py-3 input text-center font-mono flex justify-center items-center px-6  ">(</button>
+      <button class="bg-gray-300 py-3 input text-center font-mono flex justify-center items-center px-6  ">)</button>
+      <button class="bg-gray-300 py-3 input text-center font-mono flex justify-center items-center px-6  ">-</button>
+      <button class="bg-gray-300 py-3 input text-center font-mono flex justify-center items-center px-6  ">*</button>
+      <button class="bg-gray-300 py-3 input text-center font-mono flex justify-center items-center px-6  ">/</button>
+      <button class="bg-gray-300 py-3 input text-center font-mono flex justify-center items-center px-6  ">L</button>
+
+      <button class="bg-gray-300 py-3 input text-center font-mono flex justify-center items-center px-6  ">.</button>
+      <button
+        class="bg-gray-300 py-3 output-button text-center font-mono flex justify-center items-center px-6  ">=</button>
+
+    </div>
+  </div>
+</body>
+<script src='/jquery-3.7.1.min.js'></script>
+<script src='/tailwindcss.js'></script>
+<script>
+  $(function () {
+    $(".input").click(function () {
+      const input = $(this).text().replace("L", 'log')
+      if (document.querySelector(".output").innerHTML == "Syntax Error!") {
+        document.querySelector(".output").innerHTML = input
+
+      } else {
+        document.querySelector(".output").innerHTML += input
+      }
+    })
+    $(".cut").click(() => {
+      $(".output").html("")
+    })
+    $(".output-button").click(() => {
+      const value = $(".output").text().replace("log", "Math.log")
+      let math;
+      try {
+
+        math = eval(value)
+
+      }
+      catch {
+        math = "Syntax Error!"
+      }
+      $(".output").text(math)
+    })
+  })
+</script>
+
+</html>
